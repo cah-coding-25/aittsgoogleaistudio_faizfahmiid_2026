@@ -135,7 +135,7 @@ export const ExtensionPage: React.FC<ExtensionPageProps> = ({
                 {currentOrigin.includes('localhost') ? 'Local Server' : 'Online Cloud Deployment'}
               </span>
             </div>
-            <p className="text-xs text-slate-300 font-mono break-all flex items-center gap-2">
+            <div className="text-xs text-slate-300 font-mono break-all flex items-center gap-2 flex-wrap">
               <span className="text-white font-bold">{currentOrigin || 'Memuat alamat...'}</span>
               <button
                 onClick={handleCopyOrigin}
@@ -144,7 +144,7 @@ export const ExtensionPage: React.FC<ExtensionPageProps> = ({
               >
                 {copiedUrl ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
               </button>
-            </p>
+            </div>
           </div>
 
           <div className="flex items-center gap-2">

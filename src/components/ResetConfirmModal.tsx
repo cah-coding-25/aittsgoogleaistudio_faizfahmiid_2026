@@ -34,8 +34,8 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-md rounded-2xl border border-rose-500/40 bg-slate-900/95 p-6 shadow-2xl shadow-rose-950/50 space-y-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="w-full max-w-md rounded-2xl border border-rose-500/40 bg-slate-900/95 p-4 sm:p-6 shadow-2xl shadow-rose-950/50 space-y-4 sm:space-y-5 max-h-[92vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">

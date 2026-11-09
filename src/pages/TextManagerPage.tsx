@@ -168,7 +168,8 @@ export const TextManagerPage: React.FC<TextManagerPageProps> = ({
 
       {/* Jobs List / Table */}
       <div className="rounded-xl border border-slate-800 bg-slate-900/40 overflow-hidden shadow-md">
-        <div className="overflow-x-auto">
+        {/* Desktop & Tablet Table View */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
               <tr className="border-b border-slate-800 bg-slate-950/80 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
@@ -360,6 +361,172 @@ export const TextManagerPage: React.FC<TextManagerPageProps> = ({
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Adaptive Cards View (< md) */}
+        <div className="block md:hidden divide-y divide-slate-800/70">
+          {filteredJobs.map((job, idx) => {
+            const isEditing = editingJobId === job.id;
+            const isDuplicate = (nameCounts.get(job.filename.toLowerCase()) || 0) > 1;
+
+            return (
+              <div key={`m-txt-${job.id}`} className="p-3 space-y-2.5">
+                {/* Header: Order, Move buttons, Status */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="font-mono font-bold text-xs text-cyan-400 shrink-0">
+                      #{String(job.order).padStart(3, '0')}
+                    </span>
+                    <div className="flex items-center gap-0.5 bg-slate-800/80 rounded px-1 py-0.5 border border-slate-700/60">
+                      <button
+                        onClick={() => handleMove(idx, 'up')}
+                        disabled={idx === 0}
+                        className="p-1 text-slate-400 hover:text-white disabled:opacity-20 active:scale-95"
+                        title="Pindah ke atas"
+                      >
+                        <ArrowUp className="h-3.5 w-3.5" />
+                      </button>
+                      <button
+                        onClick={() => handleMove(idx, 'down')}
+                        disabled={idx === jobs.length - 1}
+                        className="p-1 text-slate-400 hover:text-white disabled:opacity-20 active:scale-95"
+                        title="Pindah ke bawah"
+                      >
+                        <ArrowDown className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <span
+                    className={`rounded-md px-2 py-0.5 text-[9px] font-bold shrink-0 ${
+                      job.status === 'COMPLETED'
+                        ? 'bg-emerald-950 text-emerald-400 border border-emerald-500/30'
+                        : job.status === 'FAILED'
+                        ? 'bg-rose-950 text-rose-400 border border-rose-500/30'
+                        : ['PREPARING', 'SENDING_TEXT', 'GENERATING', 'CONVERTING', 'SAVING'].includes(job.status)
+                        ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/40 animate-pulse'
+                        : 'bg-slate-800 text-slate-400'
+                    }`}
+                  >
+                    {job.status}
+                  </span>
+                </div>
+
+                {/* Filename & Duplicate badge */}
+                <div>
+                  {isEditing ? (
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-slate-400 font-semibold">Nama File:</label>
+                      <input
+                        type="text"
+                        value={editFilename}
+                        onChange={(e) => setEditFilename(e.target.value)}
+                        className="w-full rounded border border-cyan-500 bg-slate-950 px-2.5 py-1.5 text-xs text-white"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-slate-200">
+                      <span className="truncate">{job.filename}</span>
+                      {isDuplicate && (
+                        <span className="shrink-0 rounded px-1.5 py-0.5 text-[9px] bg-amber-950/80 text-amber-400 border border-amber-500/30">
+                          Duplikat
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Text Snippet / Editor */}
+                <div>
+                  {isEditing ? (
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-slate-400 font-semibold">Isi Teks TTS:</label>
+                      <textarea
+                        rows={3}
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                        className="w-full rounded border border-cyan-500 bg-slate-950 px-2.5 py-1.5 text-xs text-white resize-y"
+                      />
+                      {editError && (
+                        <p className="text-[10px] text-rose-400 flex items-center gap-1">
+                          <AlertCircle className="h-3 w-3" />
+                          <span>{editError}</span>
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="bg-slate-950/50 p-2.5 rounded-lg border border-slate-800/70">
+                      <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed">{job.text}</p>
+                      <div className="flex items-center justify-between text-[10px] text-slate-500 pt-1.5 mt-1 border-t border-slate-800/50">
+                        <span>{job.text.length} karakter</span>
+                        {job.duration && (
+                          <span className="font-mono text-slate-400">
+                            ~{job.duration}s {job.mp3Size ? `• ${(job.mp3Size / 1024).toFixed(1)} KB` : ''}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Action Footer */}
+                <div className="flex items-center justify-end gap-1 pt-1">
+                  {isEditing ? (
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleSaveEdit(job.id)}
+                        className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-semibold bg-emerald-600 text-white active:bg-emerald-700"
+                      >
+                        <Check className="h-3.5 w-3.5" />
+                        <span>Simpan</span>
+                      </button>
+                      <button
+                        onClick={() => setEditingJobId(null)}
+                        className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-semibold bg-slate-800 text-slate-300 active:bg-slate-700"
+                      >
+                        <X className="h-3.5 w-3.5" />
+                        <span>Batal</span>
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() => handleStartEdit(job)}
+                        className="flex items-center gap-1 rounded-lg p-2 text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700 active:bg-slate-700"
+                        title="Edit Teks"
+                      >
+                        <Edit2 className="h-3.5 w-3.5 text-cyan-400" />
+                        <span className="text-[11px]">Edit</span>
+                      </button>
+                      <button
+                        onClick={() => onDuplicateJob(job)}
+                        className="flex items-center gap-1 rounded-lg p-2 text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700 active:bg-slate-700"
+                        title="Duplikasi Pekerjaan"
+                      >
+                        <Copy className="h-3.5 w-3.5 text-indigo-400" />
+                        <span className="text-[11px]">Salin</span>
+                      </button>
+                      <button
+                        onClick={() => onDeleteJob(job.id)}
+                        className="flex items-center gap-1 rounded-lg p-2 text-xs font-medium bg-rose-950/40 text-rose-300 border border-rose-500/30 active:bg-rose-900/60"
+                        title="Hapus Pekerjaan"
+                      >
+                        <Trash2 className="h-3.5 w-3.5 text-rose-400" />
+                        <span className="text-[11px]">Hapus</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+
+          {filteredJobs.length === 0 && (
+            <div className="py-8 text-center text-slate-500 px-4">
+              <FileText className="h-8 w-8 mx-auto mb-2 opacity-30" />
+              <p className="text-xs">Tidak ada pekerjaan teks yang ditemukan.</p>
+            </div>
+          )}
         </div>
       </div>
 

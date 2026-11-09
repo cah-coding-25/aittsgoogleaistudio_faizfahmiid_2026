@@ -785,11 +785,11 @@ export default function App() {
 
         {/* Content View Container */}
         <main
-          className={`flex-1 overflow-y-auto p-4 lg:p-6 bg-slate-950/40 transition-all duration-300 pb-24 md:pb-6 ${
-            isMenuOpen ? 'md:pl-20' : 'md:pl-6'
+          className={`flex-1 w-full max-w-full overflow-x-hidden overflow-y-auto p-3 sm:p-4 lg:p-6 bg-slate-950/40 pb-28 md:pb-8 ${
+            isMenuOpen ? 'md:pl-20 lg:pl-22' : 'md:pl-6'
           }`}
         >
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-7xl w-full min-w-0">
             {currentTab === 'dashboard' && (
               <DashboardPage
                 jobs={jobs}

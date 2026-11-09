@@ -171,7 +171,7 @@
         width: 340px !important;
         height: 100vh !important;
         background: #020617 !important;
-        border-left: 1.5px solid #0284c7 !important;
+        border-left: 1px solid #1e293b !important;
         color: #f1f5f9 !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
         z-index: 2147483647 !important;

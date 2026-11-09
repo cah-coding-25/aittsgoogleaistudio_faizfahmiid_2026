@@ -113,40 +113,40 @@ export const WorkspaceModal: React.FC<WorkspaceModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-xl rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl p-6 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-xl rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl p-4 sm:p-6 overflow-hidden max-h-[92vh] flex flex-col">
         {/* Glow accent */}
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
 
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div className="flex items-center justify-between pb-4 border-b border-slate-800 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shrink-0">
               <Laptop className="h-5 w-5" />
             </div>
-            <div>
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
+            <div className="min-w-0">
+              <h3 className="text-base font-bold text-white flex items-center gap-2 flex-wrap">
                 <span>Pengaturan & Penyimpanan Lokal PC</span>
                 <span className="flex items-center gap-1 text-[10px] font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 rounded-md px-1.5 py-0.5">
                   <ShieldCheck className="h-3 w-3" />
                   Terisolasi
                 </span>
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-400 truncate">
                 Pemisahan data mandiri untuk tiap perangkat pada domain website yang sama.
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors shrink-0"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="mt-5 space-y-4 text-xs">
+        <div className="mt-4 sm:mt-5 space-y-4 text-xs overflow-y-auto flex-1 pr-0.5">
           {/* Explanation Box */}
           <div className="flex items-start gap-3 rounded-xl border border-cyan-500/20 bg-cyan-950/30 p-3.5 text-cyan-200">
             <Info className="h-4 w-4 shrink-0 mt-0.5 text-cyan-400" />

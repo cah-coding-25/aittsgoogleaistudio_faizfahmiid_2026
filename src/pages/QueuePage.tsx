@@ -190,9 +190,10 @@ export const QueuePage: React.FC<QueuePageProps> = ({
         </div>
       )}
 
-      {/* Queue Table */}
+      {/* Queue Table & Mobile Cards */}
       <div className="rounded-xl border border-slate-800 bg-slate-900/40 overflow-hidden shadow-md">
-        <div className="overflow-x-auto">
+        {/* Desktop / Tablet Table View */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
               <tr className="border-b border-slate-800 bg-slate-950/80 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
@@ -298,6 +299,102 @@ export const QueuePage: React.FC<QueuePageProps> = ({
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Adaptive Cards View (< md) */}
+        <div className="block md:hidden divide-y divide-slate-800/70">
+          {jobs.map((job) => {
+            const isCurrent = currentJob?.id === job.id;
+            return (
+              <div
+                key={`m-${job.id}`}
+                className={`p-3 space-y-2 transition-colors ${
+                  isCurrent ? 'bg-cyan-950/25 border-l-4 border-l-cyan-400' : ''
+                }`}
+              >
+                {/* Header: Order & Status */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="font-mono font-bold text-xs text-cyan-400 shrink-0">
+                      {isCurrent ? (
+                        <span className="flex items-center gap-1">
+                          <span className="h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
+                          #{job.order}
+                        </span>
+                      ) : (
+                        `#${job.order}`
+                      )}
+                    </span>
+                    <span className="font-mono font-semibold text-xs text-slate-200 truncate">
+                      {job.filename}
+                    </span>
+                  </div>
+                  <span
+                    className={`shrink-0 rounded-md px-2 py-0.5 text-[9px] font-bold border ${getStatusBadge(
+                      job.status
+                    )}`}
+                  >
+                    {job.status}
+                  </span>
+                </div>
+
+                {/* Text Snippet */}
+                <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed bg-slate-950/40 p-2 rounded-lg border border-slate-800/60">
+                  {job.text}
+                </p>
+
+                {/* Error if present */}
+                {job.error && (
+                  <div className="text-[10px] text-rose-400 bg-rose-950/30 border border-rose-500/30 rounded p-1.5 break-words">
+                    {job.error}
+                  </div>
+                )}
+
+                {/* Footer: Retry info & Action buttons */}
+                <div className="flex items-center justify-between pt-1 text-[11px]">
+                  <span className="text-slate-400 font-mono text-[10px]">
+                    Percobaan: <strong className="text-slate-200">{job.retryCount || 0}/{job.maxRetries}</strong>
+                  </span>
+
+                  <div className="flex items-center gap-1.5">
+                    {job.status === 'FAILED' && (
+                      <button
+                        onClick={() => onRetryJob(job.id)}
+                        className="flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 active:bg-amber-500/40"
+                      >
+                        <RotateCcw className="h-3 w-3" />
+                        <span>Retry</span>
+                      </button>
+                    )}
+
+                    {job.status !== 'COMPLETED' && (
+                      <button
+                        onClick={() => setSelectedJobForUpload(job)}
+                        className="flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-semibold bg-slate-800 text-slate-200 border border-slate-700 active:bg-slate-700"
+                      >
+                        <Upload className="h-3 w-3 text-cyan-400" />
+                        <span>Upload</span>
+                      </button>
+                    )}
+
+                    {job.status === 'COMPLETED' && (
+                      <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-medium py-1">
+                        <CheckCircle className="h-3.5 w-3.5" />
+                        <span>Tersimpan</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+
+          {jobs.length === 0 && (
+            <div className="py-8 text-center text-slate-500 px-4">
+              <ListOrdered className="h-8 w-8 mx-auto mb-2 opacity-30" />
+              <p className="text-xs">Antrean pekerjaan kosong. Tambahkan teks untuk memulai.</p>
+            </div>
+          )}
         </div>
       </div>
 

@@ -114,40 +114,40 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       </div>
 
       {/* 4 Status Indicator Badges (Verified Status - Non-duplicated) */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
         {/* Backend Online */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3 sm:p-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
               <Server className="h-4 w-4 text-emerald-400" />
             </div>
-            <div>
-              <p className="text-[11px] text-slate-400 font-medium">Backend Local</p>
-              <p className="text-xs font-bold text-emerald-400">Online (:3000)</p>
+            <div className="min-w-0 truncate">
+              <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate">Backend Local</p>
+              <p className="text-[11px] sm:text-xs font-bold text-emerald-400 truncate">Online (:3000)</p>
             </div>
           </div>
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500 animate-pulse ml-2" />
         </div>
 
         {/* Audio Processor Ready */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3 sm:p-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/20">
               <Cpu className="h-4 w-4 text-cyan-400" />
             </div>
-            <div>
-              <p className="text-[11px] text-slate-400 font-medium">Audio Processor</p>
-              <p className="text-xs font-bold text-cyan-400">Ready (WAV→MP3)</p>
+            <div className="min-w-0 truncate">
+              <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate">Audio Processor</p>
+              <p className="text-[11px] sm:text-xs font-bold text-cyan-400 truncate">Ready (WAV→MP3)</p>
             </div>
           </div>
-          <span className="h-2.5 w-2.5 rounded-full bg-cyan-400" />
+          <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-400 ml-2" />
         </div>
 
         {/* Extension Chrome Connected */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3 sm:p-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <div
-              className={`flex h-9 w-9 items-center justify-center rounded-lg ${
+              className={`flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-lg ${
                 extensionStatus.connected
                   ? 'bg-emerald-500/10 border border-emerald-500/20'
                   : 'bg-slate-800/40 border border-slate-700/40'
@@ -159,10 +159,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 }`}
               />
             </div>
-            <div>
-              <p className="text-[11px] text-slate-400 font-medium">Extension Chrome</p>
+            <div className="min-w-0 truncate">
+              <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate">Extension Chrome</p>
               <p
-                className={`text-xs font-bold ${
+                className={`text-[11px] sm:text-xs font-bold truncate ${
                   extensionStatus.connected ? 'text-emerald-400' : 'text-slate-500'
                 }`}
               >
@@ -171,17 +171,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             </div>
           </div>
           <span
-            className={`h-2.5 w-2.5 rounded-full ${
+            className={`h-2.5 w-2.5 shrink-0 rounded-full ml-2 ${
               extensionStatus.connected ? 'bg-emerald-500' : 'bg-slate-600'
             }`}
           />
         </div>
 
         {/* Google AI Studio Connected */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3 sm:p-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <div
-              className={`flex h-9 w-9 items-center justify-center rounded-lg ${
+              className={`flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-lg ${
                 extensionStatus.aiStudioConnected
                   ? 'bg-emerald-500/10 border border-emerald-500/20'
                   : 'bg-slate-800/40 border border-slate-700/40'
@@ -193,10 +193,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 }`}
               />
             </div>
-            <div>
-              <p className="text-[11px] text-slate-400 font-medium">Google AI Studio</p>
+            <div className="min-w-0 truncate">
+              <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate">Google AI Studio</p>
               <p
-                className={`text-xs font-bold ${
+                className={`text-[11px] sm:text-xs font-bold truncate ${
                   extensionStatus.aiStudioConnected ? 'text-emerald-400' : 'text-slate-500'
                 }`}
               >
@@ -205,7 +205,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             </div>
           </div>
           <span
-            className={`h-2.5 w-2.5 rounded-full ${
+            className={`h-2.5 w-2.5 shrink-0 rounded-full ml-2 ${
               extensionStatus.aiStudioConnected ? 'bg-emerald-500' : 'bg-slate-600'
             }`}
           />
@@ -213,75 +213,75 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       </div>
 
       {/* 7 Statistics Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-3.5">
-          <div className="flex items-center gap-2 text-slate-400 text-xs">
-            <FileText className="h-3.5 w-3.5 text-cyan-400" />
-            <span>Total Teks</span>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3">
+        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-2.5 sm:p-3.5">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 text-[11px] sm:text-xs">
+            <FileText className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+            <span className="truncate">Total Teks</span>
           </div>
-          <div className="mt-2 text-xl font-extrabold text-white">{totalJobs}</div>
+          <div className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-extrabold text-white">{totalJobs}</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-3.5">
-          <div className="flex items-center gap-2 text-slate-400 text-xs">
-            <Clock className="h-3.5 w-3.5 text-amber-400" />
-            <span>Menunggu</span>
+        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-2.5 sm:p-3.5">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 text-[11px] sm:text-xs">
+            <Clock className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+            <span className="truncate">Menunggu</span>
           </div>
-          <div className="mt-2 text-xl font-extrabold text-amber-300">{pendingJobs}</div>
+          <div className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-extrabold text-amber-300">{pendingJobs}</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-3.5">
-          <div className="flex items-center gap-2 text-slate-400 text-xs">
-            <Loader2 className={`h-3.5 w-3.5 text-blue-400 ${processingJobs > 0 ? 'animate-spin' : ''}`} />
-            <span>Sedang Diproses</span>
+        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-2.5 sm:p-3.5">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 text-[11px] sm:text-xs">
+            <Loader2 className={`h-3.5 w-3.5 text-blue-400 shrink-0 ${processingJobs > 0 ? 'animate-spin' : ''}`} />
+            <span className="truncate">Diproses</span>
           </div>
-          <div className="mt-2 text-xl font-extrabold text-blue-400">{processingJobs}</div>
+          <div className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-extrabold text-blue-400">{processingJobs}</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-3.5">
-          <div className="flex items-center gap-2 text-slate-400 text-xs">
-            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-            <span>Berhasil</span>
+        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-2.5 sm:p-3.5">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 text-[11px] sm:text-xs">
+            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+            <span className="truncate">Berhasil</span>
           </div>
-          <div className="mt-2 text-xl font-extrabold text-emerald-400">{completedJobs}</div>
+          <div className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-extrabold text-emerald-400">{completedJobs}</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-3.5">
-          <div className="flex items-center gap-2 text-slate-400 text-xs">
-            <XCircle className="h-3.5 w-3.5 text-rose-400" />
-            <span>Gagal</span>
+        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-2.5 sm:p-3.5">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 text-[11px] sm:text-xs">
+            <XCircle className="h-3.5 w-3.5 text-rose-400 shrink-0" />
+            <span className="truncate">Gagal</span>
           </div>
-          <div className="mt-2 text-xl font-extrabold text-rose-400">{failedJobs}</div>
+          <div className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-extrabold text-rose-400">{failedJobs}</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-3.5">
-          <div className="flex items-center gap-2 text-slate-400 text-xs">
-            <Music className="h-3.5 w-3.5 text-indigo-400" />
-            <span>Total MP3</span>
+        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-2.5 sm:p-3.5">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 text-[11px] sm:text-xs">
+            <Music className="h-3.5 w-3.5 text-indigo-400 shrink-0" />
+            <span className="truncate">Total MP3</span>
           </div>
-          <div className="mt-2 text-xl font-extrabold text-indigo-300">{totalMp3}</div>
+          <div className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-extrabold text-indigo-300">{totalMp3}</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-3.5">
-          <div className="flex items-center gap-2 text-slate-400 text-xs">
-            <HardDrive className="h-3.5 w-3.5 text-purple-400" />
-            <span>Total Ukuran</span>
+        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-2.5 sm:p-3.5 col-span-2 sm:col-span-1">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 text-[11px] sm:text-xs">
+            <HardDrive className="h-3.5 w-3.5 text-purple-400 shrink-0" />
+            <span className="truncate">Ukuran</span>
           </div>
-          <div className="mt-2 text-xl font-extrabold text-purple-300">{totalSizeMb} MB</div>
+          <div className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-extrabold text-purple-300">{totalSizeMb} MB</div>
         </div>
       </div>
 
       {/* Active Job Visualizer */}
       {currentJob ? (
-        <div className="rounded-2xl border border-cyan-500/30 bg-slate-900/90 p-5 shadow-lg shadow-cyan-950/20">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-3 w-3 rounded-full bg-cyan-400 animate-ping" />
-              <h3 className="text-sm font-bold text-white">
+        <div className="rounded-2xl border border-cyan-500/30 bg-slate-900/90 p-4 sm:p-5 shadow-lg shadow-cyan-950/20">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <span className="flex h-3 w-3 shrink-0 rounded-full bg-cyan-400 animate-ping" />
+              <h3 className="text-xs sm:text-sm font-bold text-white truncate">
                 Pekerjaan Sedang Aktif: #{currentJob.order} — {currentJob.filename}
               </h3>
             </div>
-            <span className="rounded-full border border-cyan-500/40 bg-cyan-950/60 px-3 py-1 text-xs font-semibold text-cyan-300">
+            <span className="self-start sm:self-auto rounded-full border border-cyan-500/40 bg-cyan-950/60 px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-semibold text-cyan-300 whitespace-nowrap">
               STATUS: {currentJob.status}
             </span>
           </div>

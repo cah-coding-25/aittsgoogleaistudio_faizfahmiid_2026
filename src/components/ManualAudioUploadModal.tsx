@@ -70,10 +70,10 @@ export const ManualAudioUploadModal: React.FC<ManualAudioUploadModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-      <div className="w-full max-w-md rounded-xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-3 sm:p-4">
+      <div className="w-full max-w-md rounded-xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4 bg-slate-950/60">
+        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4 bg-slate-950/60 shrink-0">
           <div className="flex items-center gap-2">
             <Music className="h-5 w-5 text-cyan-400" />
             <h2 className="text-base font-bold text-white">Upload Audio WAV Manual</h2>
@@ -87,7 +87,7 @@ export const ManualAudioUploadModal: React.FC<ManualAudioUploadModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-5 space-y-4">
+        <div className="p-4 sm:p-5 space-y-4 overflow-y-auto flex-1">
           <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-3 text-xs">
             <p className="text-slate-400">Pekerjaan Target:</p>
             <p className="font-semibold text-cyan-300 font-mono mt-0.5">
