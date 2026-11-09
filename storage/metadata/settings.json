@@ -1,0 +1,21 @@
+{
+  "aiStudioUrl": "https://aistudio.google.com/",
+  "storagePath": "storage",
+  "outputFormat": "mp3",
+  "mp3Bitrate": 192,
+  "maxRetries": 3,
+  "retryDelays": [
+    5000,
+    15000,
+    30000
+  ],
+  "autoStart": false,
+  "autoRetry": true,
+  "autoSave": true,
+  "autoContinue": true,
+  "stopWhenFailed": false,
+  "skipFailedJobs": true,
+  "preserveWavFiles": true,
+  "mockMode": true,
+  "conversionMode": "lamejs"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Remix v3 AI TTS Automation Studio V1.0",
+  "description": "Sistem otomatisasi generasi suara Text-to-Speech Google AI Studio dengan Chrome Extension, antrean bertahap, dan konverter WAV ke MP3.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

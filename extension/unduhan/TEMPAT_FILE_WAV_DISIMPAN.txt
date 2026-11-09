@@ -1,0 +1,22 @@
+===================================================================
+📁 FOLDER PENYIMPANAN UNDUHAN WAV - AI TTS AUTOMATION STUDIO V1.0
+===================================================================
+
+Halo! Folder "unduhan" ini adalah folder bawaan (default) yang disediakan 
+secara otomatis di dalam paket ekstensi ini.
+
+📌 OPSI 2 - OTOMATIS JIKA ANDA TIDAK MEMILIH FOLDER:
+Jika Anda tidak memilih folder kustom di website dashboard, seluruh file audio 
+WAV yang diunduh secara otomatis dari Google AI Studio akan diarahkan dan 
+dimasukkan ke dalam folder ini (atau subfolder "Downloads\unduhan" di Chrome).
+Anda tidak perlu repot mengatur path atau izin folder lagi!
+
+📌 OPSI 1 - PILIH FOLDER BEBAS (JIKA INGIN LOKASI LAIN):
+Jika Anda ingin menyimpan file WAV ke folder khusus (misalnya ke Drive D:, 
+USB Flashdisk, atau direktori proyek lain), buka Dashboard Web AI TTS Studio lalu klik:
+"📁 Pilih Folder di Komputer"
+Peramban akan menampilkan jendela pilihan folder asli sistem untuk Anda pilih.
+
+Selamat berkarya!
+Author: Faiz_Fahmi_ID
+===================================================================

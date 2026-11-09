@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>AI TTS Automation Studio Controller</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="header">
+      <div class="logo-box">
+        <div class="logo-icon">🔊</div>
+        <div>
+          <h1>AI TTS Studio</h1>
+          <span class="version">V1.0 • Controller (Cloud/Local)</span>
+        </div>
+      </div>
+      <div id="backend-status-badge" class="badge badge-offline">Offline</div>
+    </header>
+
+    <!-- Master Switch: Hidupkan / Matikan Sidebar di Google AI Studio -->
+    <section class="server-config-card" style="background: rgba(14, 165, 233, 0.08); border-color: rgba(56, 189, 248, 0.4); margin-bottom: 8px;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <span style="font-size: 11px; font-weight: 700; color: #f8fafc; display: block;">⚡ Sidebar di Google AI Studio:</span>
+          <span id="dock-toggle-label" style="font-size: 10px; color: #38bdf8; font-weight: 600;">HIDUP (Muncul di layar)</span>
+        </div>
+        <button id="btn-toggle-dock" style="background: #0284c7; color: white; border: none; border-radius: 6px; padding: 5px 12px; font-size: 11px; font-weight: bold; cursor: pointer; transition: all 0.2s;">
+          🟢 MATIKAN
+        </button>
+      </div>
+      <p style="font-size: 9.5px; color: #94a3b8; margin: 5px 0 0 0;">
+        Jika dimatikan, panel sidebar di sebelah kanan Google AI Studio tidak akan muncul sama sekali.
+      </p>
+    </section>
+
+    <!-- Cloud / Local Server Configuration -->
+    <section class="server-config-card">
+      <div class="server-config-header">
+        <span class="config-label">Target Server URL (Web Dashboard):</span>
+        <button id="btn-use-current-tab" class="btn-micro" title="Pakai URL dari tab Chrome yang sedang aktif">📍 Tab Ini</button>
+      </div>
+      <div class="input-group">
+        <input type="text" id="input-server-url" placeholder="https://app.vercel.app atau http://localhost:3000" spellcheck="false" />
+        <button id="btn-save-url" class="btn-save">Simpan</button>
+      </div>
+      <div class="server-quick-presets">
+        <button id="preset-localhost" class="preset-pill">Localhost:3000</button>
+        <button id="preset-dev" class="preset-pill">AI Studio Dev</button>
+      </div>
+    </section>
+
+    <!-- Subfolder Downloads Configuration -->
+    <section class="server-config-card" style="margin-top: 8px;">
+      <div class="server-config-header">
+        <span class="config-label">📁 Folder Unduhan WAV di Komputer:</span>
+      </div>
+      <div class="input-group">
+        <input type="text" id="input-subfolder" placeholder="unduhan" value="unduhan" spellcheck="false" />
+        <button id="btn-save-subfolder" class="btn-save">Simpan</button>
+      </div>
+      <button id="btn-pick-folder-device" class="btn btn-secondary" style="width: 100%; margin-top: 6px; padding: 7px 10px; font-size: 11px; display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: bold; cursor: pointer; border-radius: 6px;">
+        <span>📂 Pilih Folder di Perangkat Ini (Buka Dialog)</span>
+      </button>
+      <div class="server-quick-presets" style="margin-top: 6px;">
+        <button id="folder-preset-unduhan" class="preset-pill">Downloads\unduhan</button>
+        <button id="folder-preset-tts" class="preset-pill">Downloads\tts_wav</button>
+        <button id="folder-preset-audio" class="preset-pill">Downloads\audio_studio</button>
+      </div>
+      <p style="font-size: 10px; color: #94a3b8; margin: 4px 0 0 0; line-height: 1.4;">
+        Seluruh file WAV yang diunduh dari Google AI Studio akan disimpan ke folder ini di komputer Anda.
+      </p>
+    </section>
+
+    <!-- Live Status Panel -->
+    <section class="status-panel">
+      <div class="status-row">
+        <span class="label">Google AI Studio:</span>
+        <span id="aistudio-status" class="val val-waiting">Mencari tab...</span>
+      </div>
+      <div class="status-row">
+        <span class="label">Status Server:</span>
+        <span id="server-status-val" class="val">Memeriksa...</span>
+      </div>
+      <div class="status-row">
+        <span class="label">Latensi Jaringan:</span>
+        <span id="latency-val" class="val text-muted">-</span>
+      </div>
+      <div class="status-row">
+        <span class="label">Sesi Handshake:</span>
+        <span id="session-badge" class="val">Belum terhubung</span>
+      </div>
+    </section>
+
+    <!-- Navigation & Testing Actions -->
+    <div class="actions">
+      <button id="btn-test-connection" class="btn btn-primary">⚡ Uji Koneksi & Handshake</button>
+      <div class="action-grid">
+        <button id="btn-open-dashboard" class="btn btn-secondary">🌐 Buka Dashboard</button>
+        <button id="btn-open-aistudio" class="btn btn-secondary">🤖 Buka AI Studio</button>
+      </div>
+      <button id="btn-diagnostics" class="btn btn-outline">🔍 Uji Selektor DOM AI Studio</button>
+    </div>
+
+    <!-- Diagnostic logs -->
+    <div id="diag-results" class="diag-box hidden">
+      <div class="diag-header">
+        <span>Hasil Diagnostik DOM</span>
+        <button id="btn-close-diag" class="btn-tiny">✕</button>
+      </div>
+      <pre id="diag-output"></pre>
+    </div>
+
+    <footer class="footer-attribution">
+      <span>AI TTS Studio V1.0 • by: Faiz_Fahmi_ID</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
