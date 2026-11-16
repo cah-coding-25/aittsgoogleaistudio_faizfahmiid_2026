@@ -1,0 +1,13 @@
+[
+  {
+    "id": "job_1793569788767_6zz3j",
+    "order": 1,
+    "filename": "001-sambutan-pembuka",
+    "text": "Selamat datang di AI TTS Automation Studio versi 1.0 oleh Faiz Fahmi.",
+    "status": "GENERATING",
+    "retryCount": 0,
+    "maxRetries": 3,
+    "createdAt": 1793569788767,
+    "updatedAt": 1793569793098
+  }
+]

@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@keyframes eq-bar {
+  0%, 100% {
+    transform: scaleY(0.28);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes pipeline-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@keyframes fade-up-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sonar-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  75%, 100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.animate-eq-bar {
+  transform-origin: bottom;
+  animation: eq-bar 1.15s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-pipeline-shimmer {
+  animation: pipeline-shimmer 2.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-fade-up-enter {
+  animation: fade-up-enter 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-sonar-ring {
+  animation: sonar-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-eq-bar,
+  .animate-pipeline-shimmer,
+  .animate-fade-up-enter,
+  .animate-sonar-ring {
+    animation: none !important;
+  }
+}
