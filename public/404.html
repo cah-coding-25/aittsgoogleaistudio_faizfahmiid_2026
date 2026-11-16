@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <title>AI TTS Automation Studio V1.0</title>
+    <script>
+      // Single Page App redirect for GitHub Pages
+      // Encodes the path into a query parameter and redirects to index.html
+      var pathSegmentsToKeep = 0;
+      var l = window.location;
+      var newUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '');
+      var path = l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/');
+      window.location.replace(
+        newUrl + (path ? '/?p=/' + path : '') + (l.search ? '&q=' + l.search.slice(1) : '') + l.hash
+      );
+    </script>
+  </head>
+  <body style="background: #020617; color: #94a3b8; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+    <p>Memuat AI TTS Automation Studio...</p>
+  </body>
+</html>

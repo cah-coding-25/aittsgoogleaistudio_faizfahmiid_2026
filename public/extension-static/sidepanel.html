@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FahVoiceForge — AI TTS Studio</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <div class="sp-shell">
+    <main class="sp-scroll">
+      <!-- Top Brand Card -->
+      <section class="sp-brand-card">
+        <div class="sp-brand-left">
+          <img src="icons/icon48.png" alt="FahVoiceForge" class="sp-brand-logo" />
+          <div class="sp-brand-text">
+            <div class="sp-brand-title">FAHVOICEFORGE</div>
+            <div class="sp-brand-sub">Native Chrome Side Panel • Faiz_Fahmi_ID</div>
+          </div>
+        </div>
+        <div class="sp-brand-right">
+          <span id="sp-online-pill" class="sp-pill sp-pill-wait">CEK...</span>
+          <span id="sp-latency-chip" class="sp-latency-chip">- ms</span>
+        </div>
+      </section>
+
+      <!-- Card 1: Status Koneksi Tab & Target Server -->
+      <section class="sp-card">
+        <div class="sp-card-header">
+          <span class="sp-card-title">STATUS KONEKSI TAB</span>
+          <span id="sp-tab-conn-pill" class="sp-pill sp-pill-wait">Menunggu</span>
+        </div>
+
+        <div class="sp-conn-grid">
+          <div class="sp-conn-item">
+            <span class="sp-conn-label">AI Studio TTS:</span>
+            <span id="sp-aistudio-val" class="sp-conn-val sp-val-warn">Belum Terbuka</span>
+          </div>
+          <div class="sp-conn-item">
+            <span class="sp-conn-label">Server Web:</span>
+            <span id="sp-server-val" class="sp-conn-val sp-val-warn">Memeriksa...</span>
+          </div>
+        </div>
+
+        <div class="sp-url-block">
+          <div class="sp-url-header">
+            <span class="sp-mini-label">Target Web Dashboard:</span>
+            <div class="sp-mini-actions">
+              <button id="sp-btn-use-tab" type="button" class="sp-micro-btn" title="Gunakan URL tab Dashboard yang aktif">📍 Tab Ini</button>
+              <button id="sp-btn-open-aistudio" type="button" class="sp-micro-btn" title="Buka tab Google AI Studio TTS">🤖 AI Studio</button>
+            </div>
+          </div>
+          <div class="sp-url-row">
+            <input
+              type="text"
+              id="sp-backend-url"
+              class="sp-input"
+              placeholder="https://app.vercel.app atau http://localhost:3000"
+              spellcheck="false"
+            />
+            <button id="sp-btn-save-url" type="button" class="sp-btn-save">Simpan</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Folder Wajib FahVoiceForge (unduhan) -->
+      <section class="sp-card">
+        <div class="sp-card-header">
+          <span class="sp-card-title">FOLDER WAJIB EKSTENSI</span>
+          <span id="sp-folder-badge" class="sp-tag sp-tag-warn">MEMERIKSA</span>
+        </div>
+
+        <button id="sp-btn-pick-folder" type="button" class="sp-btn-folder">
+          📂 Hubungkan Folder Ekstensi / unduhan
+        </button>
+
+        <div id="sp-folder-box" class="sp-path-box">
+          Memeriksa folder unduhan milik ekstensi...
+        </div>
+
+        <p class="sp-helper-text">
+          Default otomatis mengarahkan unduhan WAV ke folder <code>unduhan</code> milik ekstensi tanpa membuat folder baru di Downloads.
+        </p>
+      </section>
+
+      <!-- Card 3: Antrean Saat Ini -->
+      <section class="sp-card">
+        <div class="sp-card-header">
+          <span class="sp-card-title">ANTREAN SAAT INI</span>
+          <span id="sp-job-status-pill" class="sp-pill sp-pill-info">MENUNGGU</span>
+        </div>
+
+        <div id="sp-job-filename" class="sp-job-title">
+          Siap menerima perintah dari website
+        </div>
+
+        <div id="sp-job-text" class="sp-job-preview">
+          Menunggu tugas antrean adegan...
+        </div>
+      </section>
+
+      <!-- Card 4: Proses Otomatis (0/5) -->
+      <section class="sp-card">
+        <div class="sp-card-header">
+          <span class="sp-card-title">PROSES OTOMATIS</span>
+          <span id="sp-step-counter" class="sp-step-counter">0/5</span>
+        </div>
+
+        <div class="sp-step-list">
+          <div class="sp-step-item" id="sp-step-1">
+            <span class="sp-step-dot"></span>
+            <span>1. Menempel teks ke prompt AI Studio</span>
+          </div>
+          <div class="sp-step-item" id="sp-step-2">
+            <span class="sp-step-dot"></span>
+            <span>2. Menekan tombol Run (Ctrl + Enter)</span>
+          </div>
+          <div class="sp-step-item" id="sp-step-3">
+            <span class="sp-step-dot"></span>
+            <span>3. Menunggu tombol unduh muncul</span>
+          </div>
+          <div class="sp-step-item" id="sp-step-4">
+            <span class="sp-step-dot"></span>
+            <span>4. Unduh audio WAV asli ke folder</span>
+          </div>
+          <div class="sp-step-item" id="sp-step-5">
+            <span class="sp-step-dot"></span>
+            <span>5. Selesai -> Lanjut antrean berikutnya</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Log Konsol Realtime -->
+      <section class="sp-card">
+        <div class="sp-card-header">
+          <span class="sp-card-title">LOG KONSOL REALTIME</span>
+          <div class="sp-mini-actions">
+            <button id="sp-btn-diag" type="button" class="sp-micro-btn">🔍 Tes DOM</button>
+            <button id="sp-btn-clear-log" type="button" class="sp-micro-btn">Clear</button>
+          </div>
+        </div>
+
+        <div id="sp-console-box" class="sp-console">
+          <div class="sp-log-line sp-log-info">[PANEL] FahVoiceForge Side Panel siap (tampilan split anti-tumpuk).</div>
+        </div>
+
+        <div id="sp-diag-box" class="sp-diag hidden">
+          <div class="sp-diag-head">
+            <span>Diagnostik Selektor DOM AI Studio</span>
+            <button id="sp-btn-close-diag" type="button" class="sp-micro-btn">✕</button>
+          </div>
+          <pre id="sp-diag-pre" class="sp-diag-pre"></pre>
+        </div>
+      </section>
+
+      <div id="sp-notice" class="sp-notice hidden"></div>
+    </main>
+
+    <!-- Sticky Bottom Action Bar (matches Reference Split Panel) -->
+    <footer class="sp-footer">
+      <button id="sp-btn-sync" type="button" class="sp-footer-btn sp-footer-secondary">
+        🔍 Sinkron Status
+      </button>
+      <button id="sp-btn-website" type="button" class="sp-footer-btn sp-footer-primary">
+        🌐 Ke Website
+      </button>
+    </footer>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
